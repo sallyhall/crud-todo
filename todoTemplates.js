@@ -4,7 +4,7 @@ var templates = {
               "<span class='itemText'> <%= itemContent %></span>",
               "</div>"].join(""),
   completedItemTmpl:  ["<div class = 'item completed' id='<%= id %>'>",
-              "<i class='fa fa-circle-o'></i>",
+              "<i class='fa fa-check-circle-o'></i>",
               "<span class='itemText'> <%= itemContent %></span>",
               "</div>"].join(""),
 };
