@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>todoos</title>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,100' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="bower_components/normalize-css/normalize.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body>
+  <header><h1>todoos</h1></header>
+  <section class="wrapper">
+    <div class="todolist">
+      <form id="inputTodo">
+        <input type="text" placeholder="Whatcha doin?">
+      </form>
+      <div class="todos">
+      </div>
+    </div>
+    <nav>
+      <span class="itemCount">0 items left</span>
+      <ul>
+        <li class="selected"><a href="">All</a></li>
+        <li><a href="">Active</a></li>
+        <li><a href="">Completed</a></li>
+      </ul>
+        <a href="" id="clear">Clear Completed</a>
+    </nav>
+    <footer>Double-click to edit a todo</footer>
+    </section>
+
+<script src="bower_components/jquery/dist/jquery.js" charset="utf-8"></script>
+<script src="bower_components/underscore/underscore.js" charset="utf-8"></script>
+<script src="app.js" charset="utf-8"></script>
+<script src="todoTemplates.js" charset="utf-8"></script>
+  </body>
+</html>
