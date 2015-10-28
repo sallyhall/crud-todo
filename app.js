@@ -8,6 +8,7 @@ var todoPage = {
   events: function (argument) {
   //on submit, add content of form to both todo array and DOM
   $("form").on("submit",function (event) {
+    todoPage.retrieveArray();
     event.preventDefault();
     var item = {
       itemContent: $("input").val(),
@@ -15,6 +16,7 @@ var todoPage = {
     };
     todoPage.todos.push(item);
     item.id = todoPage.todos.indexOf(item);
+    todoPage.storeArray();
     todoPage.loadItems("All");
     $("input").val("");
   });
@@ -22,6 +24,7 @@ var todoPage = {
   //on clicking circle next to item, toggle complete/uncomplete, switch icon
   //and update completed property in array
   $(".todos").on("click","i",function () {
+    todoPage.retrieveArray();
     $(this).toggleClass("fa-check-circle-o");
     $(this).toggleClass("fa-circle-o");
     var item = $(this).closest("div");
@@ -31,6 +34,7 @@ var todoPage = {
     }else{
       todoPage.todos[item[0].id].completed=true;
     }
+    todoPage.storeArray();
     todoPage.updateItemCount();
   });
 
@@ -41,10 +45,12 @@ var todoPage = {
 
   //on hitting enter, turn off editable and save to array
   $(".todos").on("keypress",".item",function (event){
+    todoPage.retrieveArray();
     if(event.charCode===13){
       $(this).children(".itemText")[0].contentEditable=false;
       todoPage.todos[this.id].itemContent= this.textContent;
     }
+    todoPage.storeArray();
   });
 
 
@@ -60,9 +66,11 @@ var todoPage = {
   //on clicking clear completed, delete completed items from both todo array and DOM
   $("#clear").on("click",function (event) {
     event.preventDefault();
+    todoPage.retrieveArray();
     todoPage.todos = _.filter(todoPage.todos,function (todo) {
       return !todo.completed;
     });
+    todoPage.storeArray();
     todoPage.loadItems("All");
   });
 
@@ -70,12 +78,12 @@ var todoPage = {
   },
 
   styling: function (argument) {
-    page.loadItems("All");
+    todoPage.loadItems("All");
   },
 
   loadItems: function (view) {
     $(".todos").html("");
-    var arrayToLoad=[];
+    todoPage.retrieveArray();
     if(view==="Active"){
       arrayToLoad = _.filter(todoPage.todos,function(item){
         return !item.completed;
@@ -102,6 +110,7 @@ var todoPage = {
   },
 
   updateItemCount: function () {
+    todoPage.retrieveArray();
     var itemCount =  _.countBy(todoPage.todos, function(item) {
       return !item.completed ;
       }).true;
@@ -125,6 +134,13 @@ var todoPage = {
     $el.append(tmpl(val));
   },
   todos: [],
+
+  storeArray: function () {
+    localStorage.setItem("todoArray",JSON.stringify(todoPage.todos));
+  },
+  retrieveArray: function () {
+    todoPage.todos =  JSON.parse(localStorage.getItem("todoArray"));
+  },
 
 };
 
