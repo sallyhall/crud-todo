@@ -70,7 +70,7 @@ var todoPage = {
   },
 
   styling: function (argument) {
-    // body...
+    page.loadItems("All");
   },
 
   loadItems: function (view) {
