@@ -1,5 +1,7 @@
 # crud-todo
 
+Class assignment. View live at http://sallykingston.me/crud-todo/.
+
 ## Description
 Your task is to recreate this:
 ![](assets/todo.png)
