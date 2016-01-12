@@ -103,10 +103,7 @@ var todoPage = {
         todoPage.loadTemplate($(".todos"),"itemTmpl",item);
       }
     });
-
     todoPage.updateItemCount();
-
-
   },
 
   updateItemCount: function () {
@@ -139,7 +136,7 @@ var todoPage = {
     localStorage.setItem("todoArray",JSON.stringify(todoPage.todos));
   },
   retrieveArray: function () {
-    todoPage.todos =  JSON.parse(localStorage.getItem("todoArray"));
+    todoPage.todos =  JSON.parse(localStorage.getItem("todoArray")) || [];
   },
 
 };
